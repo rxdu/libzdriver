@@ -1,0 +1,10 @@
+# tbot_io board configuration
+
+# Copyright (c) 2022 Ruixiang Du (rdu)
+
+if BOARD_TBOT_IO
+
+config BOARD
+	default "tbot_io"
+
+endif # BOARD_TBOT_IO
