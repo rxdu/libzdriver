@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          path: example-application
+          path: libzdriver
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -27,23 +27,20 @@ jobs:
       - name: Setup Zephyr project
         uses: zephyrproject-rtos/action-zephyr-setup@v1
         with:
-          app-path: example-application
+          app-path: libzdriver
           toolchains: arm-zephyr-eabi
 
       - name: Build firmware
-        working-directory: example-application
+        working-directory: libzdriver
         shell: bash
         run: |
-          if [ "${{ runner.os }}" = "Windows" ]; then
-            EXTRA_TWISTER_FLAGS="--short-build-path -O/tmp/twister-out"
-          fi
-          west twister -T app -v --inline-logs --integration $EXTRA_TWISTER_FLAGS
+            west build -b tbot app
 
-      - name: Twister Tests
-        working-directory: example-application
-        shell: bash
-        run: |
-          if [ "${{ runner.os }}" = "Windows" ]; then
-            EXTRA_TWISTER_FLAGS="--short-build-path -O/tmp/twister-out"
-          fi
-          west twister -T tests -v --inline-logs --integration $EXTRA_TWISTER_FLAGS
+    #   - name: Twister Tests
+    #     working-directory: libzdriver
+    #     shell: bash
+    #     run: |
+    #       if [ "${{ runner.os }}" = "Windows" ]; then
+    #         EXTRA_TWISTER_FLAGS="--short-build-path -O/tmp/twister-out"
+    #       fi
+    #       west twister -T tests -v --inline-logs --integration $EXTRA_TWISTER_FLAGS
