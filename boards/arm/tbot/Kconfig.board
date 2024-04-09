@@ -1,0 +1,8 @@
+# TBOT board configuration
+
+# Copyright (c) 2016 Linaro Limited.
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_TBOT
+	bool "TBot board based on STM32F405"
+	depends on SOC_STM32F405XG

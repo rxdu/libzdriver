@@ -1,0 +1,33 @@
+# SPDX-License-Identifier: Apache-2.0
+
+# Select SOC
+CONFIG_SOC_SERIES_STM32F4X=y
+CONFIG_SOC_STM32F405XG=y
+
+# Enable RCC
+CONFIG_CLOCK_CONTROL=y
+
+# Enable MPU
+CONFIG_ARM_MPU=y
+
+# Enable FPU
+CONFIG_FPU=y
+
+# Enable HW stack protection
+CONFIG_HW_STACK_PROTECTION=y
+
+# Enable RTOS Debugging
+CONFIG_DEBUG_THREAD_INFO=y
+
+CONFIG_SERIAL=y
+
+# console
+CONFIG_CONSOLE=y
+CONFIG_UART_CONSOLE=y
+
+# Enable Pinmux & GPIO
+# CONFIG_PINMUX=y
+CONFIG_GPIO=y
+
+# Enable pin controller
+CONFIG_PINCTRL=y

@@ -1,18 +1,19 @@
-identifier: tbot_io
-name: TBot IO Board
+identifier: tbot
+name: tbot
 type: mcu
 arch: arm
 toolchain:
   - zephyr
   - gnuarmemb
   - xtools
-ram: 192
-flash: 1024
 supported:
-  - i2c
-  - spi
-  - gpio
   - pwm
   - counter
-  - usb_device
+  - gpio
+  - i2c
+  - spi
+  - adc
   - watchdog
+ram: 192
+flash: 1024
+vendor: st

@@ -1,7 +1,0 @@
-# tbot_io board configuration
-
-# Copyright (c) 2024 Ruixiang Du (rdu)
-
-config BOARD_TBOT_IO
-	bool "TBot IO Board: tbot_io"
-	depends on SOC_STM32F405XG
