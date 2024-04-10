@@ -13,4 +13,4 @@ set(SYSCALL_INCLUDE_DIRS ${SYSCALL_INCLUDE_DIRS} PARENT_SCOPE)
 zephyr_include_directories(include)
 
 add_subdirectory(drivers)
-add_subdirectory(lib)
+add_subdirectory(src)

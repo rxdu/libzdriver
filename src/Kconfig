@@ -3,6 +3,7 @@
 
 menu "Custom libraries"
 
-rsource "custom/Kconfig"
+rsource "sbus/Kconfig"
+rsource "vesc/Kconfig"
 
 endmenu

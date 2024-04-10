@@ -1,14 +1,14 @@
 # Copyright (c) 2021, Legrand North America, LLC.
 # SPDX-License-Identifier: Apache-2.0
 
-config CUSTOM
-	bool "Support for custom library"
+config SBUS
+	bool "Support for sbus"
 	help
-	  This option enables the 'custom' library
+	  This option enables the 'sbus' library
 
-config CUSTOM_GET_VALUE_DEFAULT
+config SBUS_GET_VALUE_DEFAULT
 	int "custom_get_value() default return value"
-	depends on CUSTOM
+	depends on SBUS
 	default 0
 	help
 	  This option primarily exists as an example of a library Kconfig

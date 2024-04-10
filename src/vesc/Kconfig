@@ -1,0 +1,22 @@
+# Copyright (c) 2021, Legrand North America, LLC.
+# SPDX-License-Identifier: Apache-2.0
+
+config VESC
+	bool "Support for VESC"
+    depends on CAN
+	help
+	  This option enables the 'VESC' library
+
+config VESC_MCU_ID
+	hex "MCU ID"
+	depends on VESC
+	default 0x60
+	help
+	  This option specified the ID of the MCU controlling the VESC.
+
+config VESC_VESC_ID
+	hex "VESC ID"
+	depends on VESC
+	default 0x68
+	help
+	  This option specified the target VESC ID.
