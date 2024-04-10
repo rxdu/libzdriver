@@ -1,0 +1,23 @@
+# Copyright (c) 2021, Legrand North America, LLC.
+# SPDX-License-Identifier: Apache-2.0
+
+config ROBOTIO
+	bool "Support for robot io"
+	help
+	  This option enables the 'robot io' library.
+
+	  The 'robot io' library provides a simple API for utilizing MCU peripherals to
+	  control a robot. The library is intended to be used with a robot that has
+	  motors, sensors, and other peripherals that can be controlled by an MCU.
+
+config ROBOTIO_GET_VALUE_DEFAULT
+	int "custom_get_value() default return value"
+	depends on ROBOTIO
+	default 0
+	help
+	  This option primarily exists as an example of a library Kconfig
+	  setting.
+
+	  This option specifies the value for custom_get_value() to return
+	  when the input parameter is zero. (Otherwise the function returns the
+	  input parameter value.)
