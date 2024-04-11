@@ -11,8 +11,7 @@
 
 #include "bsp/tbot_bsp.h"
 
-LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL
-);
+LOG_MODULE_REGISTER(main, CONFIG_APP_LOG_LEVEL);
 
 int main(void) {
     printk("Zephyr Example Application %s\n", APP_VERSION_STRING);

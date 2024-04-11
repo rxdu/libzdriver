@@ -20,7 +20,10 @@ static const struct gpio_dt_spec led1 = GPIO_DT_SPEC_GET(LED1_NODE, gpios);
 static const struct gpio_dt_spec led2 = GPIO_DT_SPEC_GET(LED2_NODE, gpios);
 static const struct gpio_dt_spec led3 = GPIO_DT_SPEC_GET(LED3_NODE, gpios);
 
+const struct device* uart4;
+
 bool InitBoard(void) {
+    // gpio
     if (!gpio_is_ready_dt(&led1) || !gpio_is_ready_dt(&led2) || !gpio_is_ready_dt(&led3)) {
         return false;
     }
@@ -30,6 +33,8 @@ bool InitBoard(void) {
         printk("Error: failed to configure LED device\n");
         return false;
     }
+
+    // uart
 
     return true;
 }
