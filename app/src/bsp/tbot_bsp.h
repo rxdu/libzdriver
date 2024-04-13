@@ -22,4 +22,7 @@ bool InitBoard(void);
 
 void ToggleLED(LED led);
 
+void TestUartRx(void);
+void TestUartTx(void);
+
 #endif //LIBZDRIVER_TBOT_H
