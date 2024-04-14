@@ -21,11 +21,15 @@ static const struct gpio_dt_spec led1 = GPIO_DT_SPEC_GET(LED1_NODE, gpios);
 static const struct gpio_dt_spec led2 = GPIO_DT_SPEC_GET(LED2_NODE, gpios);
 static const struct gpio_dt_spec led3 = GPIO_DT_SPEC_GET(LED3_NODE, gpios);
 
-#define USART2_DEVICE_NODE DT_NODELABEL(usart2)
-static const struct device *const usart2_dev = DEVICE_DT_GET(USART2_DEVICE_NODE);
+//#define USART2_DEVICE_NODE DT_NODELABEL(usart2)
+//static const struct device *const usart2_dev = DEVICE_DT_GET(USART2_DEVICE_NODE);
+//
+//#define UART4_DEVICE_NODE DT_NODELABEL(uart4)
+//static const struct device *const uart4_dev = DEVICE_DT_GET(UART4_DEVICE_NODE);
 
-#define UART4_DEVICE_NODE DT_NODELABEL(uart4)
-static const struct device *const uart4_dev = DEVICE_DT_GET(UART4_DEVICE_NODE);
+//#define ASYNC_UART2_DEVICE_NODE DT_NODELABEL(zdrv_async_usart2)
+#define ASYNC_UART2_DEVICE_NODE DT_NODELABEL(async_uart2)
+static const struct device *const async_uart2_dev = DEVICE_DT_GET(ASYNC_UART2_DEVICE_NODE);
 
 struct uart_config uart_cfg = {
         .baudrate = 115200,
@@ -43,7 +47,7 @@ void uart_callback(const struct device *dev, struct uart_event *evt, void *user_
 //    } else if (evt->type == UART_TX_ABORTED) {
 //        printk("TX_ABORTED\n");
 //    } else
-        if (evt->type == UART_RX_RDY) {
+    if (evt->type == UART_RX_RDY) {
         printk("RX_RDY\n");
     } else if (evt->type == UART_RX_BUF_REQUEST) {
         printk("RX_BUF_REQUEST\n");
@@ -69,21 +73,27 @@ bool InitBoard(void) {
     }
 
     // uart
-    if (!device_is_ready(usart2_dev)) {
-        printk("USART2 device not found!");
+//    if (!device_is_ready(usart2_dev)) {
+//        printk("USART2 device not found!");
+//        return false;
+//    }
+//
+//    int rc = uart_configure(usart2_dev, &uart_cfg);
+//    if (rc) {
+//        printk("Could not configure device %s", usart2_dev->name);
+//    }
+//
+//    uart_callback_set(usart2_dev, uart_callback, NULL);
+//
+//    if (!device_is_ready(uart4_dev)) {
+//        printk("UART4 device not found!");
+//        return 0;
+//    }
+
+    // async uart
+    if (!device_is_ready(async_uart2_dev)) {
+        printk("ASYNC_UART2 device not found!");
         return false;
-    }
-
-    int rc = uart_configure(usart2_dev, &uart_cfg);
-    if (rc) {
-        printk("Could not configure device %s", usart2_dev->name);
-    }
-
-    uart_callback_set(usart2_dev, uart_callback, NULL);
-
-    if (!device_is_ready(uart4_dev)) {
-        printk("UART4 device not found!");
-        return 0;
     }
 
     return true;
@@ -105,27 +115,23 @@ void ToggleLED(LED led) {
     }
 }
 
-void TestUartRx(void) {
-    uint8_t rx_data[100];
-    int32_t timeout = 50000;
-    int ret = uart_rx_enable(usart2_dev, rx_data, sizeof(rx_data), timeout);
-    if (ret < 0) {
-        printk("Error receiving data\n");
-    }
-}
-
-void TestUartTx(void) {
-    uint8_t tx_data[] = "Filler text is text that shares some characteristics of a real written text, but is random or otherwise generated. It may be used to display a sample of fonts, generate text for testing, or to spoof an e-mail spam filter.";
-
-    int32_t timeout = 50000;
-//    printk("Sending data of size: %d\n", sizeof(tx_data));
-    int ret = uart_tx(usart2_dev, tx_data, sizeof(tx_data), timeout);
-    if (ret < 0) {
-        printk("Error sending data\n");
-    }
-//    for (int i = 0; i < sizeof(tx_data); i++) {
-//        uart_poll_out(uart4_dev, tx_data[i]);
+//void TestUartRx(void) {
+//    uint8_t rx_data[100];
+//    int32_t timeout = 50000;
+//    int ret = uart_rx_enable(usart2_dev, rx_data, sizeof(rx_data), timeout);
+//    if (ret < 0) {
+//        printk("Error receiving data\n");
 //    }
-
-//    printk("Data sent: %s", tx_data);
-}
+//}
+//
+//void TestUartTx(void) {
+//    uint8_t tx_data[] = "Filler text is text that shares some characteristics of a real written text, but is random or otherwise generated. It may be used to display a sample of fonts, generate text for testing, or to spoof an e-mail spam filter.";
+//
+//    int32_t timeout = 50000;
+////    printk("Sending data of size: %d\n", sizeof(tx_data));
+//    int ret = uart_tx(usart2_dev, tx_data, sizeof(tx_data), timeout);
+//    if (ret < 0) {
+//        printk("Error sending data\n");
+//    }
+////    printk("Data sent: %s", tx_data);
+//}

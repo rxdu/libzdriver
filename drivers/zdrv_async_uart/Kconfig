@@ -1,0 +1,22 @@
+# Copyright (c) 2024 Nordic Semiconductor ASA
+# SPDX-License-Identifier: Apache-2.0
+
+menuconfig ZDRV_ASYNC_UART
+	bool "Libzdriver asynchronous UART driver"
+	select UART_ASYNC_API
+	help
+	  This option enables the asynchronous UART driver class.
+
+if ZDRV_ASYNC_UART
+
+config ZDRV_ASYNC_UART_INIT_PRIORITY
+	int "Blink device drivers init priority"
+	default KERNEL_INIT_PRIORITY_DEVICE
+	help
+	  Blink device drivers init priority.
+
+module = ZDRIVERS
+module-str = zdrivers
+source "subsys/logging/Kconfig.template.log_config"
+
+endif # ZDRV_ASYNC_UART

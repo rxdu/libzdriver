@@ -24,7 +24,7 @@ int main(void) {
 
     ToggleLED(LED2);
 
-    TestUartRx();
+//    TestUartRx();
 
     while (1) {
 //        thread_analyzer_print();
@@ -33,7 +33,7 @@ int main(void) {
         ToggleLED(LED2);
         ToggleLED(LED3);
 
-        TestUartTx();
+//        TestUartTx();
         k_sleep(K_MSEC(500));
     }
 
